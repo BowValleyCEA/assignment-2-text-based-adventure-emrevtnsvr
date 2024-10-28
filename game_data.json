@@ -1,5 +1,43 @@
 {
-  "GameName": "Assignment 2",
+  "GameName": "Spooky Adventure",
   "Description": "Some game description for Assignment 2",
-  "Rooms":  [{"Name":"Living Room","Reference":"living_room","Description":"Place where people live, I guess."}, {"Name":"Dining Room","Reference":"dining_room","Description":"A dining for rooms"}]
+  "HelpMessage":  "Helping the player!",
+  "Rooms": [
+    {
+      "Name": "Living Room",
+      "Reference": "living_room",
+      "Description": "Place where people live, I guess.",
+      "Objects": [
+        {
+          "Name": "Chair",
+          "Description": "chair"
+        },
+        {
+          "Name": "Lock",
+          "Description": "lock"
+        }
+      ]
+    },
+    {
+      "Name": "Dining Room",
+      "Reference": "dining_room",
+      "Description": "A dining for rooms",
+      "Objects": [
+        {
+          "Name": "chair",
+          "Description": "adasdasd"
+        },
+        {
+          "Name": "Lock",
+          "Description": "lock"
+        }
+      ]
+    },
+    {
+      "Name": "BedRoom",
+      "Reference": "bed_room",
+      "Description": "A sleeping for rooms",
+      "Objects": []
+    }
+  ]
 }
