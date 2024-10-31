@@ -1,7 +1,7 @@
 {
   "GameName": "Spooky Adventure",
-  "Description": "Some game description for Assignment 2",
-  "HelpMessage":  "Helping the player!",
+  "Description": "You get up in the entrance of a home it is raining and lightning outside and then you want to get out but you realize that there is nothing outside. Suddenly you realize that you will have to find a portal to get out of here. There are objects that will help you to get out of this place. Collect the amd find the portal. Good luck!!!",
+  "HelpMessage": "Helping the player!",
   "Rooms": [
     {
       "Name": "Living Room",
@@ -13,8 +13,8 @@
           "Description": "chair"
         },
         {
-          "Name": "Lock",
-          "Description": "lock"
+          "Name": "Key",
+          "Description": "Key"
         }
       ]
     },
@@ -24,12 +24,12 @@
       "Description": "A dining for rooms",
       "Objects": [
         {
-          "Name": "chair",
-          "Description": "adasdasd"
+          "Name": "Chair",
+          "Description": "Chair moves by itself I would recommend to not to get close to it"
         },
         {
           "Name": "Lock",
-          "Description": "lock"
+          "Description": "Now you can open up the the door on the right side with this key. But do not forget that you must collect it in order to use it"
         }
       ]
     },
@@ -37,7 +37,13 @@
       "Name": "BedRoom",
       "Reference": "bed_room",
       "Description": "A sleeping for rooms",
-      "Objects": []
+      "Objects": [
+        {
+          "Name": "Portal",
+          "Description": "Congrats now you found the portal and succeed to escape from here"
+        }
+      ]
     }
-  ]
+  ],
+  "Inventory": []
 }

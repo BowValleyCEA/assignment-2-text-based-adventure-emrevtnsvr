@@ -13,6 +13,8 @@ namespace game1402_a2_starter
         public string Description { get; set; }
         public List<Room> Rooms { get; set; } //this is only an example. You do not ha
 
+        
+
         public string HelpMessage { get; set; }
 
     }
@@ -21,20 +23,25 @@ namespace game1402_a2_starter
     {
         private GameData _gameData = data;
         private Room CurrentRoom;
+        public List<Object> Inventory = new List<Object>(); 
+        public void FirstDescription()
+        {
+            Console.WriteLine(_gameData.Description);
+        }
 
         public void ProcessString(string enteredString)
         {
             enteredString = enteredString.Trim().ToLower(); //trim any white space from the beginning or end of string and convert to lower case
             string[] commands = enteredString.Split(" "); //split based on spaces. The length of this array will tell you whether you have 1, 2, 3, 4, or more commands.
             //modify these functions however you want, but this is where the beginning of calling functions to handle where you are
-            string response = "I dont understand"; //you will always do something when processing the string and then give a response
+            string response = "I do not understand"; //you will always do something when processing the string and then give a response
 
-            
+            // I'm adding the commands here for players
             switch (commands.Length)
             {
                 case 0:
                     //do nothing
-                    
+
                     break;
                 case 1:
                     if (commands[0] == "help")
@@ -54,7 +61,8 @@ namespace game1402_a2_starter
                         {
                             response = "no object";
                         }
-                    }else if (commands[0] == "go")
+                    }
+                    else if (commands[0] == "go")
                     {
                         if (commands[1] == "forward")
                         {
@@ -63,24 +71,43 @@ namespace game1402_a2_starter
                             SetMessage(nextRoom.Description);
                             ShowObjects(nextRoom);
                             response = nextRoom.Name;
-                        }else if (commands[1] == "right")
+                        }
+                        else if (commands[1] == "right")
                         {
-                            if(CurrentRoom == _gameData.Rooms[1])
+                            if (CurrentRoom == _gameData.Rooms[1])
                             {
-                                Room nextRoom = _gameData.Rooms[2];
-                                SetRoom(nextRoom);
-                                SetMessage(nextRoom.Description);
-                                response = nextRoom.Name;
+                                if (CheckInventory("lock"))
+                                {
+                                    Room nextRoom = _gameData.Rooms[2];
+                                    SetRoom(nextRoom);
+                                    SetMessage(nextRoom.Description);
+                                    response = nextRoom.Name;
+                                }
+                                else { response = "You need to unlock it"; } 
                             }
                             else
                             {
                                 response = "you must first go to the dining room";
                             }
-                           
+
                         }
-                        else 
+                        else
                         {
                             response = "no room";
+                        }
+                    }
+                    else if (commands[0] == "collect")
+                    {
+                        Object obj = IsObject(commands[1]);
+                        if (obj != null)
+                        {
+                            Inventory.Add(obj);
+                            response = "You got " + obj.Name;
+
+                        }
+                        else
+                        {
+                            response = "no object";
                         }
                     }
                     break;
@@ -102,15 +129,26 @@ namespace game1402_a2_starter
 
         public Object IsObject(string objectName)
         {
+           
             Object result = null;
             for (int i = 0; i < CurrentRoom.Objects.Count; i++)
             {
-                if (CurrentRoom.Objects[i].Name == objectName)
+                if (CurrentRoom.Objects[i].Name.ToLower() == objectName)
                     result = CurrentRoom.Objects[i];
             }
             return result;
         }
-
+        public bool CheckInventory(string objectName)
+        {
+           
+            bool result = false;
+            for (int i = 0; i < Inventory.Count; i++)
+            {
+                if (Inventory[i].Name.ToLower() == objectName)
+                    result = true;
+            }
+            return result;
+        }
         public void ShowObjects(Room room)
         {
             for (int i = 0; i < room.Objects.Count; i++)

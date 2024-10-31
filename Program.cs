@@ -11,7 +11,7 @@ yourGameData = JsonSerializer.Deserialize<GameData>(jsonString);
 Game yourGame = new Game(yourGameData);
 yourGame.SetMessage(yourGameData.GameName);
 yourGame.SetRoom(yourGameData.Rooms[0]);
-
+yourGame.FirstDescription();
 while (true)
 {
     yourGame.ProcessString(Console.ReadLine());
